@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ankitdubey.pokemonapp.database.PokemonDao
+import com.ankitdubey.pokemonapp.database.toPokemonDBList
 import com.ankitdubey.pokemonapp.network.PokemonService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,15 +36,10 @@ class PokemonListViewModel @Inject constructor(
             _loadingLiveData.postValue(true)
             val pokemon = pokemonService.fetchPokemon(offset, 30)
 
-            pokemon.results.map {
-                val values = it.detailURL.split("/").toTypedArray().filter { it.isNotEmpty() }
-                it.id = values.lastOrNull() ?: System.currentTimeMillis().toString()
-            }
-
             if (offset == 0)
-                pokemonDao.updatePokemon(pokemon.results)
+                pokemonDao.updatePokemon(pokemon.results.toPokemonDBList())
             else
-                pokemonDao.insertAll(pokemon.results)
+                pokemonDao.insertAll(pokemon.results.toPokemonDBList())
 
             _loadingLiveData.postValue(false)
         }

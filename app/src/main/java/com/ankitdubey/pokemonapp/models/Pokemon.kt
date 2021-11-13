@@ -1,31 +1,35 @@
 package com.ankitdubey.pokemonapp.models
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Ankit Dubey on 13,November,2021
  */
 
-
-@Entity(tableName = "pokemon")
 data class Pokemon(
-    @PrimaryKey
-    var id : String,
-    val name : String,
-    /*@Ignore val height : Int ? = null,
-    @Ignore val weight : Int ? = null,*/
-
-    /*@SerializedName("base_experience")
-    @Ignore val experience : Int ? = null,*/
+    val name: String,
+    var height: Int? = null,
+    var weight: Int? = null,
 
     @SerializedName("url")
-    val detailURL : String
+    val detailURL: String,
+    val sprites: Other? = null,
 )
 
 data class PokemonList(
-    val results : List<Pokemon>,
-    val count : Long
+    val results: List<Pokemon>,
+    val count: Long
+)
+
+data class Other(
+    val other: HomeImage
+)
+
+data class HomeImage(
+    val home: PokemonImage
+)
+
+data class PokemonImage(
+    @SerializedName("front_default")
+    val frontDefault: String? = null
 )

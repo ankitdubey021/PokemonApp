@@ -7,12 +7,13 @@ package com.ankitdubey.pokemonapp.ui.pokemonList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ankitdubey.pokemonapp.database.PokemonEntity
 import com.ankitdubey.pokemonapp.databinding.ListPokemonBinding
 import com.ankitdubey.pokemonapp.models.Pokemon
 
 class PokemonListAdapter :
     RecyclerView.Adapter<PokemonListAdapter.MyViewHolder>() {
-    var pokemonItems: List<Pokemon> = emptyList()
+    var pokemonItems: List<PokemonEntity> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

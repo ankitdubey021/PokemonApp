@@ -16,17 +16,17 @@ import com.ankitdubey.pokemonapp.models.Pokemon
 @Dao
 interface PokemonDao {
     @Query("SELECT * FROM pokemon")
-    fun getAll(): LiveData<List<Pokemon>>
+    fun getAll(): LiveData<List<PokemonEntity>>
 
     @Insert(onConflict = REPLACE)
-    fun insertAll(users: List<Pokemon>)
+    fun insertAll(users: List<PokemonEntity>)
 
 
     @Query("DELETE from pokemon")
     fun deleteAll()
 
     @Transaction
-    fun updatePokemon(pokemonList: List<Pokemon>) {
+    fun updatePokemon(pokemonList: List<PokemonEntity>) {
         deleteAll()
         insertAll(pokemonList)
     }
