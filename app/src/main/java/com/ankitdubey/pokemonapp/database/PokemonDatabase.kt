@@ -10,7 +10,7 @@ import com.ankitdubey.pokemonapp.models.Pokemon
  * Created by Ankit Dubey on 13,November,2021
  */
 
-@Database(entities = arrayOf(PokemonEntity::class), version = 1, exportSchema = false)
+@Database(entities = [PokemonEntity::class], version = 1, exportSchema = false)
 abstract class PokemonDatabase : RoomDatabase(){
     abstract fun pokemonDao(): PokemonDao
 

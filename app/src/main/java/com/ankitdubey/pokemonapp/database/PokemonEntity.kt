@@ -14,8 +14,13 @@ data class PokemonEntity(
     @PrimaryKey
     var id : String,
     val name : String,
-    val image : String? = null
-) : Serializable
+    val image : String? = null,
+    val weight : Int? = null,
+    val height : Int? = null
+) : Serializable{
+    fun getWeightString(): String = String.format("%.1f KG", weight?.toFloat()?:0 / 10)
+    fun getHeightString(): String = String.format("%.1f M", height?.toFloat()?:0 / 10)
+}
 
 fun Pokemon.toDBPokemon() : PokemonEntity{
     val values = this.detailURL?.split("/")?.toTypedArray()?.filter { it.isNotEmpty() }
@@ -23,7 +28,9 @@ fun Pokemon.toDBPokemon() : PokemonEntity{
     return PokemonEntity(
         id = values?.lastOrNull() ?: System.currentTimeMillis().toString(),
         name = this.name,
-        image = this.sprites?.other?.home?.frontDefault
+        image = this.sprites?.other?.home?.frontDefault,
+        weight = this.weight,
+        height = this.height
     )
 }
 
