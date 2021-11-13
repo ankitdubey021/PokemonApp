@@ -17,7 +17,7 @@
         android:name="com.ankitdubey.pokemonapp.ui.pokemonDetail.PokemonDetailsFragment"
         android:label="PokemonDetailsFragment" >
         <argument
-            android:name="pokemon"
-            app:argType="com.ankitdubey.pokemonapp.database.PokemonEntity" />
+            android:name="pokemonId"
+            app:argType="string" />
     </fragment>
 </navigation>

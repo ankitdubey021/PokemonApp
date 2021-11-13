@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ankitdubey.pokemonapp.database.PokemonEntity
 import com.ankitdubey.pokemonapp.databinding.ListPokemonBinding
 
-class PokemonListAdapter(val callback: (PokemonEntity) -> Unit) :
+class PokemonListAdapter(val callback: (String) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.MyViewHolder>() {
     var pokemonItems: List<PokemonEntity> = emptyList()
         set(value) {
@@ -34,7 +34,7 @@ class PokemonListAdapter(val callback: (PokemonEntity) -> Unit) :
         holder.viewDataBinding.apply {
             pokemonNameTv.text = pokemon.name
             root.setOnClickListener {
-                callback(pokemon)
+                callback(pokemon.id)
             }
         }
     }

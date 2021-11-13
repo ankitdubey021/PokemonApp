@@ -18,10 +18,10 @@ data class PokemonEntity(
 ) : Serializable
 
 fun Pokemon.toDBPokemon() : PokemonEntity{
-    val values = this.detailURL.split("/").toTypedArray().filter { it.isNotEmpty() }
+    val values = this.detailURL?.split("/")?.toTypedArray()?.filter { it.isNotEmpty() }
 
     return PokemonEntity(
-        id = values.lastOrNull() ?: System.currentTimeMillis().toString(),
+        id = values?.lastOrNull() ?: System.currentTimeMillis().toString(),
         name = this.name,
         image = this.sprites?.other?.home?.frontDefault
     )

@@ -36,9 +36,9 @@ class PokemonListFragment :
     }
 
     private fun initViews() {
-        pokemonListAdapter = PokemonListAdapter(callback = { pokemonEntity ->
+        pokemonListAdapter = PokemonListAdapter(callback = { id ->
             findNavController().navigate(
-                PokemonListFragmentDirections.showPokemon(pokemonEntity)
+                PokemonListFragmentDirections.showPokemon(id)
             )
         })
 

@@ -12,7 +12,7 @@ data class Pokemon(
     var weight: Int? = null,
 
     @SerializedName("url")
-    val detailURL: String,
+    val detailURL: String?= null,
     val sprites: Other? = null,
 )
 
