@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.ankitdubey.pokemonapp.ui.pokemonList.PokemonListFragment"
-        />
+        >
+        <action
+            android:id="@+id/showPokemon"
+            app:destination="@id/pokemonDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailsFragment"
+        android:name="com.ankitdubey.pokemonapp.ui.pokemonDetail.PokemonDetailsFragment"
+        android:label="PokemonDetailsFragment" >
+        <argument
+            android:name="pokemon"
+            app:argType="com.ankitdubey.pokemonapp.database.PokemonEntity" />
+    </fragment>
 </navigation>

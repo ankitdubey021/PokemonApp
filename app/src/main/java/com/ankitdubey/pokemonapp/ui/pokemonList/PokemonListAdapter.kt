@@ -9,27 +9,36 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitdubey.pokemonapp.database.PokemonEntity
 import com.ankitdubey.pokemonapp.databinding.ListPokemonBinding
-import com.ankitdubey.pokemonapp.models.Pokemon
 
-class PokemonListAdapter :
+class PokemonListAdapter(val callback: (PokemonEntity) -> Unit) :
     RecyclerView.Adapter<PokemonListAdapter.MyViewHolder>() {
     var pokemonItems: List<PokemonEntity> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val withDataBinding = ListPokemonBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
-            false)
+            false
+        )
         return MyViewHolder(withDataBinding)
     }
+
     override fun getItemCount() = pokemonItems.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.viewDataBinding.pokemonNameTv.text = pokemonItems[position].name
+        val pokemon = pokemonItems[position]
+        holder.viewDataBinding.apply {
+            pokemonNameTv.text = pokemon.name
+            root.setOnClickListener {
+                callback(pokemon)
+            }
+        }
     }
+
     class MyViewHolder(val viewDataBinding: ListPokemonBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root)
 }
