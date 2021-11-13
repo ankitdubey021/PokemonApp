@@ -11,7 +11,7 @@ import com.ankitdubey.pokemonapp.extensions.addDivider
 import dagger.hilt.android.AndroidEntryPoint
 
 import com.ankitdubey.pokemonapp.extensions.onScrolledToBottom
-import com.ankitdubey.utils.ProgressBarUtils
+import com.ankitdubey.pokemonapp.utils.ProgressBarUtils
 
 
 /**

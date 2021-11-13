@@ -1,4 +1,4 @@
-package com.ankitdubey.utils
+package com.ankitdubey.pokemonapp.utils
 
 /**
  * Created by Ankit Dubey on 13,November,2021
